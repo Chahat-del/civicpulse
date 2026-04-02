@@ -3,11 +3,11 @@
 // <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Mono&display=swap" rel="stylesheet">
 
 import { useState } from 'react';
-import useIssues from '../hooks/useIssues';
-import IssueCard from '../components/IssueCard';
-import IssueDetailModal from '../components/IssueDetailModal';
-import FilterBar from '../components/FilterBar';
-import MapView from '../components/MapView';
+import useIssues from '../../hooks/useIssues';
+import IssueCard from "../../components/IssueCard";
+import IssueDetailModal from '../../components/IssueDetailModal';
+import FilterBar from '../../components/FilterBar';
+import MapView from '../../components/MapView';
 
 const TABS = [
   { id: 'feed', label: 'Feed',    icon: '▦' },
