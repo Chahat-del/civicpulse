@@ -8,25 +8,30 @@ import MyIssuesPage from './pages/MyIssues/MyIssuesPage';
 import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useAuth();
-  return user ? children : <Navigate to="/login" />;
+  const { user, loading } = useAuth();
+  if (loading) return null;
+  return user ? children : <Navigate to="/login" replace />;
 };
 
 const AuthorityRoute = ({ children }) => {
-  const { user, isAuthority } = useAuth();
-  if (!user) return <Navigate to="/login" />;
-  if (!isAuthority()) return <Navigate to="/explore" />;
+  const { user, loading, isAuthority } = useAuth();
+  if (loading) return null;
+  if (!user) return <Navigate to="/login" replace />;
+  if (!isAuthority()) return <Navigate to="/explore" replace />;
   return children;
 };
 
 const AppRoutes = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  if (loading) return null;
 
   return (
     <>
       {user && <Navbar />}
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={
+          user ? <Navigate to="/explore" replace /> : <LoginPage />
+        } />
         <Route path="/explore" element={
           <ProtectedRoute><ExplorePage /></ProtectedRoute>
         } />
@@ -39,7 +44,9 @@ const AppRoutes = () => {
         <Route path="/admin" element={
           <AuthorityRoute><AdminDashboard /></AuthorityRoute>
         } />
-        <Route path="*" element={<Navigate to={user ? "/explore" : "/login"} />} />
+        <Route path="*" element={
+          <Navigate to={user ? "/explore" : "/login"} replace />
+        } />
       </Routes>
     </>
   );
