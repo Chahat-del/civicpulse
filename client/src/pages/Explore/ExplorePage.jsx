@@ -3,10 +3,10 @@
 // <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 import { useState, useContext } from 'react';
-import useIssues from '../hooks/useIssues';
-import { AuthContext } from '../context/AuthContext';
-import IssueDetailModal from '../components/IssueDetailModal';
-import MapView from '../components/MapView';
+import useIssues from '../../hooks/useIssues';
+import { AuthContext } from '../../context/AuthContext';
+import IssueDetailModal from '../../components/IssueDetailModal';
+import MapView from '../../components/MapView';
 
 const CATEGORIES = [
   { id: 'all',         label: 'All Issues',   icon: '🗂️',  color: '#5c6bc0' },
