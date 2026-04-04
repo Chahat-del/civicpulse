@@ -29,6 +29,7 @@ const AppRoutes = () => {
     <>
       {user && <Navbar />}
       <Routes>
+        <Route path="/" element={<Navigate to="/explore" />} />
         <Route path="/login" element={
           user ? <Navigate to="/explore" replace /> : <LoginPage />
         } />
